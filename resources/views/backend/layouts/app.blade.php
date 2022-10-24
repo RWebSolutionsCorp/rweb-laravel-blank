@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Insurance Partner | CMS</title>
+  <title>{{ env('APP_NAME') }} | CMS</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   @yield('css')
@@ -24,7 +24,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
             <form action="{{ url('admin/logout') }}" method="POST">@csrf
-                <button class="btn btn-danger">
+                <button class="btn btn-dark">
                     <i class="fas fa-power-off"></i>
                 </button>
             </form>
@@ -37,7 +37,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ url('admin/dashboard') }}" class="brand-link">
-            <span class="brand-text font-weight-light ml-2">CMS</span>
+            CMS
+            <span class="brand-text font-weight-light">| {{ env('APP_NAME') }}</span>
         </a>
 
         <!-- Sidebar -->

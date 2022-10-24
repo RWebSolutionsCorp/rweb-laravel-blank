@@ -31,11 +31,13 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 });
 
 // AUTH CMS ACCESS
-Route::get('/admin/login', [ BackendController\AuthController::class, 'login' ]);
-Route::post('/admin/login', [ BackendController\AuthController::class, 'signIn' ]);
+Route::get('/admin/login', [ BackendController\AuthController::class, 'login' ])->name('admin.login');
+Route::post('/admin/login', [ BackendController\AuthController::class, 'signIn' ])->name('admin.signin');
 Route::prefix('admin')->middleware(['auth', 'user-access:cms'])->group(function () {
-    Route::post('/logout', [ BackendController\AuthController::class, 'logout' ]);
+    Route::post('/logout', [ BackendController\AuthController::class, 'logout' ])->name('admin.logout');
+
     Route::get('/dashboard', function () {
         return view('backend.modules.dashboard.index');
     });
+
 });

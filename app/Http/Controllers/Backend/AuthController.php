@@ -11,10 +11,14 @@ class AuthController extends Controller
     public function login ()
     {
         if (Auth::check()) {
-            if (Auth::user()->role !== 'user') {
-                return redirect('/admin/login');
+            if (Auth::user()->role === 'cms') {
+                return redirect('/admin/dashboard');
+            }
+            if (Auth::user()->role === 'user') {
+                return redirect('/');
             }
         }
+
         return view('backend.auth.login');
     }
 

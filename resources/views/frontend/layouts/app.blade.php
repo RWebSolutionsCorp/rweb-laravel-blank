@@ -11,6 +11,9 @@
     <title>
         @yield('title', env('APP_NAME'))
     </title>
+
+    @yield('seo')
+
 </head>
 <body>
 

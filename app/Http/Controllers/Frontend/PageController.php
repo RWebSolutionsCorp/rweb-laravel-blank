@@ -10,7 +10,7 @@ class PageController extends Controller
 
     public function home (Request $request)
     {
-        return $request;
+        return view('frontend.pages.home');
     }
 
 }

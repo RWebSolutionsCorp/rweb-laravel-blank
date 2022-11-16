@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend as FrontendController;
 use App\Http\Controllers\Backend as BackendController;
+use App\Http\Controllers\Frontend\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,7 @@ use App\Http\Controllers\Backend as BackendController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'home']);
 
 Route::get('/success', [App\Http\Controllers\ResponseController::class, 'success'])->name('success');
 Route::get('/error', [App\Http\Controllers\ResponseController::class, 'error'])->name('error');
@@ -35,6 +34,9 @@ Route::get('/admin/login', [ BackendController\AuthController::class, 'login' ])
 Route::post('/admin/login', [ BackendController\AuthController::class, 'signIn' ])->name('admin.signin');
 Route::prefix('admin')->middleware(['auth', 'user-access:cms'])->group(function () {
     Route::post('/logout', [ BackendController\AuthController::class, 'logout' ])->name('admin.logout');
+
+
+
 
     Route::get('/dashboard', function () {
         return view('backend.modules.dashboard.index');

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
-    //
+
+    public function home (Request $request)
+    {
+        return $request;
+    }
+
 }

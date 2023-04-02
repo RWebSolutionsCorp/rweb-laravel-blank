@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CMS</title>
 
@@ -17,6 +18,20 @@
   </div>
   <!-- /.login-logo -->
   <div class="card">
+    @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-check"></i> Success!</h5>
+        {{ Session::get('success') }}
+      </div>
+    @endif
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-times"></i> Error!</h5>
+        {{ Session::get('error') }}
+      </div>
+    @endif
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 

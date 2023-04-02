@@ -18,7 +18,6 @@ use App\Http\Controllers\Frontend\PageController;
 */
 
 Route::get('/', [PageController::class, 'home']);
-
 Route::get('/success', [App\Http\Controllers\ResponseController::class, 'success'])->name('success');
 Route::get('/error', [App\Http\Controllers\ResponseController::class, 'error'])->name('error');
 
@@ -34,9 +33,6 @@ Route::get('/admin/login', [ BackendController\AuthController::class, 'login' ])
 Route::post('/admin/login', [ BackendController\AuthController::class, 'signIn' ])->name('admin.signin');
 Route::prefix('admin')->middleware(['auth', 'user-access:cms'])->group(function () {
     Route::post('/logout', [ BackendController\AuthController::class, 'logout' ])->name('admin.logout');
-
-
-
 
     Route::get('/dashboard', function () {
         return view('backend.modules.dashboard.index');

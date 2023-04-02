@@ -14,9 +14,7 @@ class AuthController extends Controller
             if (Auth::user()->role === 'cms') {
                 return redirect('/admin/dashboard');
             }
-            if (Auth::user()->role === 'user') {
-                return redirect('/');
-            }
+            return abort(401);
         }
 
         return view('backend.auth.login');
@@ -37,9 +35,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             return redirect('admin/dashboard');
+        } else {
+            return back()->with('error', 'Your credentials are incorrect.');
         }
-
-        return back();
     }
 
     public function logout (Request $request)

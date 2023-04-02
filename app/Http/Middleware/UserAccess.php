@@ -17,9 +17,12 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $userType)
     {
-        if(Auth::check() && auth()->user()->role == $userType){
-            return $next($request);
+        if(Auth::check()){
+            if (auth()->user()->role !== $userType) {
+                return redirect('/error')->with('error', 'You do not have permission to access for this page.');
+            }
         }
-        return redirect('/error')->with('error', 'You do not have permission to access for this page.');
+
+        return $next($request);
     }
 }
